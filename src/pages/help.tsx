@@ -8,64 +8,56 @@ import { Alert, AlertDescription } from '@site/src/components/ui/alert';
 type FormState = 'idle' | 'submitting' | 'success' | 'error';
 
 export default function HelpPage(): JSX.Element {
-  const [formState, setFormState] = useState<FormState>('idle');
   const [validationErrors, setValidationErrors] = useState<string[]>([]);
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    type: 'technical',
-    message: ''
-  });
+  const [formSubmitted, setFormSubmitted] = useState(false);
 
-  const validateForm = () => {
+  const validateForm = (data: { name: string; email: string; message: string }) => {
     const errors: string[] = [];
-    if (!formData.name.trim()) errors.push('Name is required');
-    if (!formData.email.trim()) errors.push('Email is required');
-    if (!formData.message.trim()) errors.push('Message is required');
+    if (!data.name.trim()) errors.push('Name is required');
+    if (!data.email.trim()) errors.push('Email is required');
+    if (!data.message.trim()) errors.push('Message is required');
     
     // Basic email validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (formData.email && !emailRegex.test(formData.email)) {
+    if (data.email && !emailRegex.test(data.email)) {
       errors.push('Please enter a valid email address');
     }
 
     return errors;
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    const form = e.currentTarget;
+    const formElements = form.elements as HTMLFormControlsCollection;
+    const name = (formElements.namedItem('name') as HTMLInputElement).value;
+    const email = (formElements.namedItem('email') as HTMLInputElement).value;
+    const message = (formElements.namedItem('message') as HTMLTextAreaElement).value;
     
-    const errors = validateForm();
+    const formData = {
+      name,
+      email,
+      type: (formElements.namedItem('type') as HTMLSelectElement).value,
+      message
+    };
+    
+    const errors = validateForm(formData);
     if (errors.length > 0) {
+      e.preventDefault();
       setFormState('error');
       setValidationErrors(errors);
       return;
     }
+    
     setValidationErrors([]);
-
-    setFormState('submitting');
-
-    try {
-      // Send form data to support email
-      const emailBody = `
-Name: ${formData.name}
-Email: ${formData.email}
-Type: ${formData.type}
-Message:
-${formData.message}
-      `;
-
-      // Use mailto link to open email client
-      const mailtoLink = `mailto:support@breadcrumb.ai?subject=Help Request: ${formData.type}&body=${encodeURIComponent(emailBody)}`;
-      window.location.href = mailtoLink;
-
-      // Set success state after email client opens
-      setFormState('success');
-      setFormData({ name: '', email: '', type: 'technical', message: '' });
-    } catch (error) {
-      console.error('Error submitting form:', error);
-      setFormState('error');
+    
+    // Update _replyto hidden field with the email
+    const replyToInput = form.querySelector('input[name="_replyto"]') as HTMLInputElement;
+    if (replyToInput) {
+      replyToInput.value = email;
     }
+    
+    // Form will be submitted to FormSubmit.co
+    setFormSubmitted(true);
   };
 
   return (
@@ -78,38 +70,44 @@ ${formData.message}
               Fill out this form and our support team will get back to you as soon as possible.
             </p>
 
-            {formState === 'success' && (
+            {formSubmitted && (
               <Alert className="margin-bottom--md" variant="default">
                 <AlertDescription>
-                  Thanks for reaching out! We'll get back to you soon at {formData.email}.
+                  Thanks for reaching out! We'll get back to you soon.
                 </AlertDescription>
               </Alert>
             )}
 
-            {formState === 'error' && (
+            {validationErrors.length > 0 && (
               <Alert className="margin-bottom--md" variant="destructive">
                 <AlertDescription>
-                  {validationErrors.length > 0 ? (
-                    <ul className="list-none m-0 p-0">
-                      {validationErrors.map((error, index) => (
-                        <li key={index}>{error}</li>
-                      ))}
-                    </ul>
-                  ) : (
-                    'Something went wrong. Please try again or email us directly at support@breadcrumb.ai'
-                  )}
+                  <ul className="list-none m-0 p-0">
+                    {validationErrors.map((error, index) => (
+                      <li key={index}>{error}</li>
+                    ))}
+                  </ul>
                 </AlertDescription>
               </Alert>
             )}
 
-            <form onSubmit={handleSubmit} className="margin-bottom--lg help-form">
+            <form 
+              action="https://formsubmit.co/support@breadcrumb.ai" 
+              method="POST" 
+              className="margin-bottom--lg help-form"
+            >
+              {/* Hidden fields for FormSubmit configuration */}
+              <input type="hidden" name="_subject" value="Help Request Submission" />
+              <input type="hidden" name="_next" value="http://localhost:3000/docs/help" />
+              <input type="hidden" name="_captcha" value="true" />
+              <input type="hidden" name="_template" value="table" />
+              <input type="hidden" name="_replyto" value="" />
+
               <div className="margin-bottom--sm">
                 <label htmlFor="name" className="margin-bottom--sm">Name</label>
                 <Input
                   id="name"
+                  name="name"
                   type="text"
-                  value={formData.name}
-                  onChange={e => setFormData(prev => ({ ...prev, name: e.target.value }))}
                   required
                 />
               </div>
@@ -118,9 +116,8 @@ ${formData.message}
                 <label htmlFor="email" className="margin-bottom--sm">Email</label>
                 <Input
                   id="email"
+                  name="email"
                   type="email"
-                  value={formData.email}
-                  onChange={e => setFormData(prev => ({ ...prev, email: e.target.value }))}
                   required
                 />
               </div>
@@ -129,8 +126,7 @@ ${formData.message}
                 <label htmlFor="type" className="margin-bottom--sm">Request Type</label>
                 <select
                   id="type"
-                  value={formData.type}
-                  onChange={e => setFormData(prev => ({ ...prev, type: e.target.value }))}
+                  name="type"
                   className="form-select"
                   required
                 >
@@ -146,8 +142,7 @@ ${formData.message}
                 <label htmlFor="message" className="margin-bottom--sm">Message</label>
                 <Textarea
                   id="message"
-                  value={formData.message}
-                  onChange={e => setFormData(prev => ({ ...prev, message: e.target.value }))}
+                  name="message"
                   required
                   rows={5}
                 />
@@ -155,7 +150,7 @@ ${formData.message}
 
               <Button 
                 type="submit" 
-                disabled={formState === 'submitting'}
+                disabled={false}
                 className="button button--primary"
                 style={{
                   backgroundColor: '#59479C',
@@ -166,7 +161,7 @@ ${formData.message}
                   cursor: 'pointer'
                 }}
               >
-                {formState === 'submitting' ? 'Sending...' : 'Submit Request'}
+                Submit Request
               </Button>
             </form>
           </div>
