@@ -3,7 +3,6 @@ import Layout from '@theme/Layout';
 import { Button } from '../components/ui/button';
 import { Input } from '../components/ui/input';
 import { Textarea } from '../components/ui/textarea';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../components/ui/select';
 import { Alert, AlertDescription } from '../components/ui/alert';
 
 type FormState = 'idle' | 'submitting' | 'success' | 'error';
@@ -14,7 +13,7 @@ export default function HelpPage(): JSX.Element {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    type: '',
+    type: 'technical',
     message: ''
   });
 
@@ -22,7 +21,6 @@ export default function HelpPage(): JSX.Element {
     const errors: string[] = [];
     if (!formData.name.trim()) errors.push('Name is required');
     if (!formData.email.trim()) errors.push('Email is required');
-    if (!formData.type) errors.push('Request type is required');
     if (!formData.message.trim()) errors.push('Message is required');
     
     // Basic email validation
@@ -63,7 +61,7 @@ ${formData.message}
 
       // Set success state after email client opens
       setFormState('success');
-      setFormData({ name: '', email: '', type: '', message: '' });
+      setFormData({ name: '', email: '', type: 'technical', message: '' });
     } catch (error) {
       console.error('Error submitting form:', error);
       setFormState('error');
@@ -129,22 +127,19 @@ ${formData.message}
 
               <div className="margin-bottom--sm">
                 <label htmlFor="type" className="margin-bottom--sm">Request Type</label>
-                <Select
+                <select
+                  id="type"
                   value={formData.type}
-                  onValueChange={value => setFormData(prev => ({ ...prev, type: value }))}
+                  onChange={e => setFormData(prev => ({ ...prev, type: e.target.value }))}
+                  className="form-select"
                   required
                 >
-                  <SelectTrigger>
-                    <SelectValue placeholder="Select a request type" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="technical">Technical Support</SelectItem>
-                    <SelectItem value="account">Account Help</SelectItem>
-                    <SelectItem value="billing">Billing Question</SelectItem>
-                    <SelectItem value="feature">Feature Request</SelectItem>
-                    <SelectItem value="other">Other</SelectItem>
-                  </SelectContent>
-                </Select>
+                  <option value="technical">Technical Support</option>
+                  <option value="account">Account Help</option>
+                  <option value="billing">Billing Question</option>
+                  <option value="feature">Feature Request</option>
+                  <option value="other">Other</option>
+                </select>
               </div>
 
               <div className="margin-bottom--lg">
