@@ -63,17 +63,19 @@ const config: Config = {
         alt: 'Breadcrumb',
         src: 'img/logo.svg',
       },
-      // items: [
-      //   {
-      //     type: 'docSidebar',
-      //     sidebarId: 'tutorialSidebar',
-      //     position: 'left',
-      //     label: 'Docs',
-      //   },
-        // {to: '/blog', label: 'Guides', position: 'left'},
-        // {to: '/community', label: 'Community', position: 'left'},
-        // {to: '/help', label: 'Still need help?', position: 'right'},
-      // ],
+      items: [
+        {
+          type: 'docSidebar',
+          sidebarId: 'tutorialSidebar',
+          position: 'left',
+          label: 'Docs',
+        },
+        {
+          to: '/help',
+          label: 'Need Help?',
+          position: 'right',
+        },
+      ],
     },
     footer: {
       style: 'light',
@@ -107,7 +109,10 @@ const config: Config = {
         {
           title: 'More',
           items: [
-            // blog link removed
+            {
+              label: 'Need Help?',
+              to: '/help',
+            },
           ],
         },
       ],
