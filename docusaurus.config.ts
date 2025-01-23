@@ -102,7 +102,10 @@ const config: Config = {
         {
           title: 'More',
           items: [
-            // blog link removed
+            {
+              label: 'Need Help?',
+              to: '/help',
+            },
           ],
         },
       ],
