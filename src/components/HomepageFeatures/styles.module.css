@@ -12,6 +12,12 @@
   margin-bottom: 1.5rem;
 }
 
+.categoryLink {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
 .categoryCard {
   background: #fff;
   border-radius: 12px;
