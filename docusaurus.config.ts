@@ -130,8 +130,6 @@ const config: Config = {
       darkTheme: prismThemes.dracula,
     },
   } satisfies Preset.ThemeConfig,
-};
-
   plugins: [
     [
       require.resolve('@easyops-cn/docusaurus-search-local'),
