@@ -10,6 +10,7 @@ type FormState = 'idle' | 'submitting' | 'success' | 'error';
 
 export default function HelpPage(): JSX.Element {
   const [formState, setFormState] = useState<FormState>('idle');
+  const [validationErrors, setValidationErrors] = useState<string[]>([]);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -17,21 +18,54 @@ export default function HelpPage(): JSX.Element {
     message: ''
   });
 
+  const validateForm = () => {
+    const errors: string[] = [];
+    if (!formData.name.trim()) errors.push('Name is required');
+    if (!formData.email.trim()) errors.push('Email is required');
+    if (!formData.type) errors.push('Request type is required');
+    if (!formData.message.trim()) errors.push('Message is required');
+    
+    // Basic email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (formData.email && !emailRegex.test(formData.email)) {
+      errors.push('Please enter a valid email address');
+    }
+
+    return errors;
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    const errors = validateForm();
+    if (errors.length > 0) {
+      setFormState('error');
+      setValidationErrors(errors);
+      return;
+    }
+    setValidationErrors([]);
+
     setFormState('submitting');
 
     try {
-      // In a real implementation, this would send to an API endpoint
-      // For now, we'll simulate sending to support@breadcrumb.ai
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      console.log('Form submitted:', {
-        ...formData,
-        to: 'support@breadcrumb.ai'
-      });
+      // Send form data to support email
+      const emailBody = `
+Name: ${formData.name}
+Email: ${formData.email}
+Type: ${formData.type}
+Message:
+${formData.message}
+      `;
+
+      // Use mailto link to open email client
+      const mailtoLink = `mailto:support@breadcrumb.ai?subject=Help Request: ${formData.type}&body=${encodeURIComponent(emailBody)}`;
+      window.location.href = mailtoLink;
+
+      // Set success state after email client opens
       setFormState('success');
       setFormData({ name: '', email: '', type: '', message: '' });
     } catch (error) {
+      console.error('Error submitting form:', error);
       setFormState('error');
     }
   };
@@ -57,7 +91,15 @@ export default function HelpPage(): JSX.Element {
             {formState === 'error' && (
               <Alert className="margin-bottom--md" variant="destructive">
                 <AlertDescription>
-                  Something went wrong. Please try again or email us directly at support@breadcrumb.ai
+                  {validationErrors.length > 0 ? (
+                    <ul className="list-none m-0 p-0">
+                      {validationErrors.map((error, index) => (
+                        <li key={index}>{error}</li>
+                      ))}
+                    </ul>
+                  ) : (
+                    'Something went wrong. Please try again or email us directly at support@breadcrumb.ai'
+                  )}
                 </AlertDescription>
               </Alert>
             )}
