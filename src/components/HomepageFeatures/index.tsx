@@ -32,8 +32,9 @@ function Category({title, Svg, folder}: CategoryItem) {
     return docPath.startsWith(folder.toLowerCase()) && !docPath.endsWith('/intro');
   });
   const articleCount = categoryDocs.length;
-  const introDoc = docs.find(doc => doc.id.toLowerCase() === folder.toLowerCase() + '/intro');
-  const categoryLink = introDoc ? introDoc.path : `/docs/category/${folder.toLowerCase()}`;
+  const introPath = `${folder.toLowerCase()}/intro`;
+  const introDoc = docs.find(doc => doc.id.toLowerCase() === introPath);
+  const categoryLink = introDoc ? introDoc.path : `/docs/${introPath}`;
 
   return (
     <div className={clsx('col col--4')}>
