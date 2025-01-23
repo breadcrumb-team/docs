@@ -4,12 +4,12 @@ sidebar_position: 5
 
 # Embedding Content
 
-Learn how to embed Breadcrumb content in other platforms.
+Embed Widgets on Your Website - This feature allows you to share real-time, interactive data visualizations on your website with your audience without any hassle. Simply generate the widget link and embed it into your site's HTML. It's that easy!
 
-## Overview
+## Features
 
-Learn how to:
-- Generate embed codes
-- Customize embed appearances
-- Manage embedded content
-- Track embed performance
+- Real-time interactive visualizations
+- Simple widget link generation
+- Easy HTML integration
+- Live data updates
+- Hassle-free embedding process

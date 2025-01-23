@@ -4,12 +4,12 @@ sidebar_position: 3
 
 # Exports
 
-Learn how to export your Breadcrumb content in various formats.
+Download Widgets and Datasets - Breadcrumb lets you download your widgets in multiple formats, including PNG, JPEG, and SVG. Additionally, you can export the datasets behind these widgets as CSV files. This flexibility ensures you can work with your data offline and in the way that best suits your needs.
 
-## Overview
+## Supported Formats
 
-Learn how to:
-- Export to different file formats
-- Customize export settings
-- Manage export history
-- Batch export multiple items
+- Images: PNG, JPEG, SVG
+- Data: CSV
+- Offline access support
+- Flexible export options
+- Dataset preservation
