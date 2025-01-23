@@ -11,6 +11,17 @@ export default function HelpPage(): JSX.Element {
   const [validationErrors, setValidationErrors] = useState<string[]>([]);
   const [formSubmitted, setFormSubmitted] = useState(false);
 
+  // Check for success parameter in URL when component mounts
+  React.useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.has('success')) {
+      setFormSubmitted(true);
+      // Remove the success parameter from URL
+      const newUrl = window.location.pathname;
+      window.history.replaceState({}, '', newUrl);
+    }
+  }, []);
+
   const validateForm = (data: { name: string; email: string; message: string }) => {
     const errors: string[] = [];
     if (!data.name.trim()) errors.push('Name is required');
@@ -71,9 +82,9 @@ export default function HelpPage(): JSX.Element {
             </p>
 
             {formSubmitted && (
-              <Alert className="margin-bottom--md" variant="default">
+              <Alert className="margin-bottom--md" variant="default" style={{ backgroundColor: '#4CAF50', color: 'white' }}>
                 <AlertDescription>
-                  Thanks for reaching out! We'll get back to you soon.
+                  ✓ Thanks for reaching out! We'll get back to you soon.
                 </AlertDescription>
               </Alert>
             )}
@@ -97,7 +108,7 @@ export default function HelpPage(): JSX.Element {
             >
               {/* Hidden fields for FormSubmit configuration */}
               <input type="hidden" name="_subject" value="Help Request Submission" />
-              <input type="hidden" name="_next" value="http://localhost:3000/docs/help" />
+              <input type="hidden" name="_next" value="https://breadcrumb-team.github.io/docs/help?success=true" />
               <input type="hidden" name="_captcha" value="true" />
               <input type="hidden" name="_template" value="table" />
               <input type="hidden" name="_replyto" value="" />
