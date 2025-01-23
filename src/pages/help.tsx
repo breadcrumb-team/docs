@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import Layout from '@theme/Layout';
-import { Button } from '../../components/ui/button';
-import { Input } from '../../components/ui/input';
-import { Textarea } from '../../components/ui/textarea';
-import { Alert, AlertDescription } from '../../components/ui/alert';
+import { Button } from '@site/src/components/ui/button';
+import { Input } from '@site/src/components/ui/input';
+import { Textarea } from '@site/src/components/ui/textarea';
+import { Alert, AlertDescription } from '@site/src/components/ui/alert';
 
 type FormState = 'idle' | 'submitting' | 'success' | 'error';
 
