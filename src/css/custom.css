@@ -19,31 +19,39 @@
   --ifm-color-primary-lightest: #3cad6e;
   --ifm-code-font-size: 95%;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
-
-  --background: 0 0% 100%;
-  --foreground: 222.2 84% 4.9%;
-  --card: 0 0% 100%;
-  --card-foreground: 222.2 84% 4.9%;
-  --popover: 0 0% 100%;
-  --popover-foreground: 222.2 84% 4.9%;
-  --primary: 221.2 83.2% 53.3%;
-  --primary-foreground: 210 40% 98%;
-  --secondary: 210 40% 96.1%;
-  --secondary-foreground: 222.2 47.4% 11.2%;
-  --muted: 210 40% 96.1%;
-  --muted-foreground: 215.4 16.3% 46.9%;
-  --accent: 210 40% 96.1%;
-  --accent-foreground: 222.2 47.4% 11.2%;
-  --destructive: 0 84.2% 60.2%;
-  --destructive-foreground: 210 40% 98%;
-  --border: 214.3 31.8% 91.4%;
-  --input: 214.3 31.8% 91.4%;
-  --ring: 221.2 83.2% 53.3%;
-  --radius: 0.5rem;
 }
 
 html, .navbar, .footer{
   background:#F1EFED;
+}
+
+/* Tailwind Form Styles */
+.form-select {
+  @apply block w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm shadow-sm focus:outline-none focus:ring-1 focus:ring-ring;
+}
+
+.button--primary {
+  @apply bg-primary text-white px-6 py-2 rounded-lg hover:opacity-90 transition-opacity;
+}
+
+.margin-bottom--sm {
+  @apply mb-4;
+}
+
+.margin-bottom--md {
+  @apply mb-6;
+}
+
+.margin-bottom--lg {
+  @apply mb-8;
+}
+
+.margin-vert--lg {
+  @apply my-8;
+}
+
+label {
+  @apply block text-sm font-medium mb-2;
 }
 
 .navbar__brand {
