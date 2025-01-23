@@ -132,4 +132,15 @@ const config: Config = {
   } satisfies Preset.ThemeConfig,
 };
 
+  plugins: [
+    [
+      '@easyops-cn/docusaurus-search-local',
+      /** @type {import("@easyops-cn/docusaurus-search-local").Options} */
+      ({
+        hashed: true,
+      }),
+    ],
+  ],
+};
+
 export default config;
