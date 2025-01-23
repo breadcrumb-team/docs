@@ -157,6 +157,14 @@ ${formData.message}
                 type="submit" 
                 disabled={formState === 'submitting'}
                 className="button button--primary"
+                style={{
+                  backgroundColor: '#59479C',
+                  color: 'white',
+                  padding: '10px 24px',
+                  borderRadius: '8px',
+                  border: 'none',
+                  cursor: 'pointer'
+                }}
               >
                 {formState === 'submitting' ? 'Sending...' : 'Submit Request'}
               </Button>
