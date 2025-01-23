@@ -2,7 +2,7 @@
 sidebar_position: 2
 ---
 
-# Groups Feature Overview
+# Groups 
 
 Breadcrumb's **Groups** feature is designed to enhance the organization and interaction with your data visualizations. With Groups, you can create, manage, and view multiple analytic dashboards within a single space, offering greater clarity and flexibility in your data analysis process.
 

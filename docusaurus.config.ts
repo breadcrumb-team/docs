@@ -6,7 +6,7 @@ import type * as Preset from '@docusaurus/preset-classic';
 
 const config: Config = {
   title: 'Breadcrumb.ai',
-  tagline: 'Guides and tutorials',
+  tagline: 'Help Center',
   favicon: 'img/favicon.ico',
 
   // Set the production url of your site here
@@ -65,12 +65,6 @@ const config: Config = {
       },
       items: [
         {
-          type: 'docSidebar',
-          sidebarId: 'tutorialSidebar',
-          position: 'left',
-          label: 'Docs',
-        },
-        {
           to: '/help',
           label: 'Need Help?',
           position: 'right',
@@ -84,8 +78,12 @@ const config: Config = {
           title: 'Docs',
           items: [
             {
-              label: 'Tutorial',
-              to: '/docs/Spaces/intro.html',
+              label: 'Getting started',
+              to: '/docs/docs/intro',
+            },
+            {
+              label: 'Blog',
+              href: 'https://breadcrumb.ai/blog',
             },
           ],
         },
@@ -94,15 +92,15 @@ const config: Config = {
           items: [
             {
               label: 'Slack Community',
-              href: 'https://stackoverflow.com/questions/tagged/docusaurus',
+              href: 'https://join.slack.com/t/breadcrumbcommunity/shared_invite/zt-26maq86pe-sQqPQ7WTPn6mkJEwqBIvHw',
             },
             {
               label: 'LinkedIn',
-              href: 'https://discordapp.com/invite/docusaurus',
+              href: 'https://www.linkedin.com/company/breadcrumbai/',
             },
             {
               label: 'X',
-              href: 'https://x.com/docusaurus',
+              href: 'https://x.com/breadcrumbai',
             },
           ],
         },

@@ -102,7 +102,7 @@ ${formData.message}
               </Alert>
             )}
 
-            <form onSubmit={handleSubmit} className="margin-bottom--lg">
+            <form onSubmit={handleSubmit} className="margin-bottom--lg help-form">
               <div className="margin-bottom--sm">
                 <label htmlFor="name" className="margin-bottom--sm">Name</label>
                 <Input

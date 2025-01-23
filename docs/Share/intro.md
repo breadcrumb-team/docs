@@ -10,6 +10,6 @@ This section covers how to share and collaborate within Breadcrumb.
 
 Learn how to:
 - Share content with team members
-- Set sharing permissions
-- Manage access controls
-- Track shared content
+- Embedding wigets
+- Publishing reports
+- Export your data visualizations

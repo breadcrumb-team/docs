@@ -21,6 +21,11 @@ const CategoryList: CategoryItem[] = [
     Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
     folder: 'Share',
   },
+  {
+    title: 'Data',
+    Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
+    folder: 'Data',
+  },
 ];
 
 function Category({title, Svg, folder}: CategoryItem) {

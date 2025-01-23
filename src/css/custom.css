@@ -27,9 +27,12 @@ html, .navbar, .footer{
 
 /* Tailwind Form Styles */
 .form-select {
-  @apply block w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm shadow-sm focus:outline-none focus:ring-1 focus:ring-ring;
+  @apply block w-full rounded-md border border-input bg-white px-3 py-2 text-sm shadow-sm focus:outline-none focus:ring-1 focus:ring-ring;
 }
-
+.help-form input, .help-form textarea {
+  background:#FFF !important;
+  box-shadow:none !important;
+}
 .button--primary {
   @apply bg-primary text-white px-6 py-2 rounded-lg hover:opacity-90 transition-opacity;
 }
