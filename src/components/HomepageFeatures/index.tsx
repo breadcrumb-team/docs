@@ -1,5 +1,6 @@
 import clsx from 'clsx';
 import Heading from '@theme/Heading';
+import Link from '@docusaurus/Link';
 import {useAllDocsData} from '@docusaurus/plugin-content-docs/client';
 import styles from './styles.module.css';
 
@@ -26,20 +27,27 @@ function Category({title, Svg, folder}: CategoryItem) {
   const allDocsData = useAllDocsData();
   const defaultDocsData = allDocsData['default'];
   const docs = Object.values(defaultDocsData.versions[0].docs);
-  const categoryDocs = docs.filter(doc => doc.id.startsWith(folder.toLowerCase()));
+  const categoryDocs = docs.filter(doc => {
+    const docPath = doc.id.toLowerCase();
+    return docPath.startsWith(folder.toLowerCase()) && !docPath.endsWith('/intro');
+  });
   const articleCount = categoryDocs.length;
+  const introDoc = docs.find(doc => doc.id.toLowerCase() === folder.toLowerCase() + '/intro');
+  const categoryLink = introDoc ? introDoc.path : `/docs/category/${folder.toLowerCase()}`;
 
   return (
     <div className={clsx('col col--4')}>
-      <div className={styles.categoryCard}>
-        <div className="text--center">
-          <Svg className={styles.categorySvg} role="img" />
+      <Link to={categoryLink} className={styles.categoryLink}>
+        <div className={styles.categoryCard}>
+          <div className="text--center">
+            <Svg className={styles.categorySvg} role="img" />
+          </div>
+          <div className="text--center">
+            <Heading as="h3">{title}</Heading>
+            <p>{articleCount} articles</p>
+          </div>
         </div>
-        <div className="text--center">
-          <Heading as="h3">{title}</Heading>
-          <p>{articleCount} articles</p>
-        </div>
-      </div>
+      </Link>
     </div>
   );
 }
