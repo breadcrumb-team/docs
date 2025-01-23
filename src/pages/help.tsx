@@ -91,7 +91,7 @@ export default function HelpPage(): JSX.Element {
             )}
 
             <form 
-              action="https://formsubmit.co/support@breadcrumb.ai" 
+              action="https://formsubmit.co/victor@breadcrumb.ai" 
               method="POST" 
               className="margin-bottom--lg help-form"
             >
