@@ -70,6 +70,8 @@ html, body, .navbar, .footer {
 .help-form input, .help-form textarea {
   background:#FFF !important;
   box-shadow:none !important;
+
+  border: 1px solid #e2e2e2 !important ;
 }
 .button--primary {
   @apply bg-primary text-white px-6 py-2 rounded-lg hover:opacity-90 transition-opacity;
