@@ -34,7 +34,7 @@ function Category({title, Svg, folder}: CategoryItem) {
   const articleCount = categoryDocs.length;
   const introPath = `${folder.toLowerCase()}/intro`;
   const introDoc = docs.find(doc => doc.id.toLowerCase() === introPath);
-  const categoryLink = introDoc ? introDoc.path : `/docs/${introPath}`;
+  const categoryLink = introDoc ? introDoc.path : `/docs/${introPath}.html`;
 
   return (
     <div className={clsx('col col--4')}>

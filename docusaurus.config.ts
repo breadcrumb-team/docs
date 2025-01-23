@@ -10,15 +10,16 @@ const config: Config = {
   favicon: 'img/favicon.ico',
 
   // Set the production url of your site here
-  url: 'https://your-docusaurus-site.example.com',
+  url: 'https://breadcrumb-team.github.io',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: '/',
+  baseUrl: '/docs/',
+  trailingSlash: true,
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'facebook', // Usually your GitHub org/user name.
-  projectName: 'docusaurus', // Usually your repo name.
+  organizationName: 'breadcrumb-team', // Usually your GitHub org/user name.
+  projectName: 'docs', // Usually your repo name.
 
   onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
@@ -62,17 +63,19 @@ const config: Config = {
         alt: 'Breadcrumb',
         src: 'img/logo.svg',
       },
-      // items: [
-      //   {
-      //     type: 'docSidebar',
-      //     sidebarId: 'tutorialSidebar',
-      //     position: 'left',
-      //     label: 'Docs',
-      //   },
-        // {to: '/blog', label: 'Guides', position: 'left'},
-        // {to: '/community', label: 'Community', position: 'left'},
-        // {to: '/help', label: 'Still need help?', position: 'right'},
-      // ],
+      items: [
+        {
+          type: 'docSidebar',
+          sidebarId: 'tutorialSidebar',
+          position: 'left',
+          label: 'Docs',
+        },
+        {
+          to: '/help',
+          label: 'Need Help?',
+          position: 'right',
+        },
+      ],
     },
     footer: {
       style: 'light',
@@ -82,7 +85,7 @@ const config: Config = {
           items: [
             {
               label: 'Tutorial',
-              to: '/docs/intro',
+              to: '/docs/Spaces/intro.html',
             },
           ],
         },
@@ -106,7 +109,10 @@ const config: Config = {
         {
           title: 'More',
           items: [
-            // blog link removed
+            {
+              label: 'Need Help?',
+              to: '/help',
+            },
           ],
         },
       ],

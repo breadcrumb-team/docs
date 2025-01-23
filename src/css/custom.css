@@ -5,6 +5,10 @@
  */
 
 /* You can override the default Infima variables here. */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
   --ifm-color-primary: #59479C;
   --ifm-color-primary-dark: #29784c;
@@ -19,6 +23,35 @@
 
 html, .navbar, .footer{
   background:#F1EFED;
+}
+
+/* Tailwind Form Styles */
+.form-select {
+  @apply block w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm shadow-sm focus:outline-none focus:ring-1 focus:ring-ring;
+}
+
+.button--primary {
+  @apply bg-primary text-white px-6 py-2 rounded-lg hover:opacity-90 transition-opacity;
+}
+
+.margin-bottom--sm {
+  @apply mb-4;
+}
+
+.margin-bottom--md {
+  @apply mb-6;
+}
+
+.margin-bottom--lg {
+  @apply mb-8;
+}
+
+.margin-vert--lg {
+  @apply my-8;
+}
+
+label {
+  @apply block text-sm font-medium mb-2;
 }
 
 .navbar__brand {
