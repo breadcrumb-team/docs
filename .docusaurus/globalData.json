@@ -1,0 +1,83 @@
+{
+  "docusaurus-plugin-content-docs": {
+    "default": {
+      "path": "/docs/docs",
+      "versions": [
+        {
+          "name": "current",
+          "label": "Next",
+          "isLast": true,
+          "path": "/docs/docs",
+          "mainDocId": "intro",
+          "docs": [
+            {
+              "id": "Data/connectingsources",
+              "path": "/docs/docs/Data/connectingsources",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "Data/intro",
+              "path": "/docs/docs/Data/intro",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "intro",
+              "path": "/docs/docs/intro",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "Share/embed",
+              "path": "/docs/docs/Share/embed",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "Share/exports",
+              "path": "/docs/docs/Share/exports",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "Share/intro",
+              "path": "/docs/docs/Share/intro",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "Share/inviting-collaborators",
+              "path": "/docs/docs/Share/inviting-collaborators",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "Share/publish",
+              "path": "/docs/docs/Share/publish",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "Spaces/groups",
+              "path": "/docs/docs/Spaces/groups",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "Spaces/intro",
+              "path": "/docs/docs/Spaces/intro",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "/category/spaces",
+              "path": "/docs/docs/category/spaces",
+              "sidebar": "tutorialSidebar"
+            }
+          ],
+          "draftIds": [],
+          "sidebars": {
+            "tutorialSidebar": {
+              "link": {
+                "path": "/docs/docs/intro",
+                "label": "intro"
+              }
+            }
+          }
+        }
+      ],
+      "breadcrumbs": true
+    }
+  }
+}
