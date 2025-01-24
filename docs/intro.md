@@ -72,8 +72,8 @@ If you have questions or need assistance:
 ## Next Steps
 
 Now that you’re set up, dive into the following resources to maximize your experience with Breadcrumb:  
-- [Embedding Widgets](../embedding-widgets)  
-- [Using Groups](../groups-feature-overview)  
-- [Exporting Data](../exports)
+- [Embedding Content](Share/embed)  
+- [Creating Spaces](Spaces/Creating-Spaces/intro)  
+- [Exporting Data](Share/exports)
 
 Ready to get started? Log in to your Breadcrumb.ai account today and start exploring the possibilities!
