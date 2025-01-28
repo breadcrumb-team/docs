@@ -4,7 +4,14 @@
  * work well for content-centric websites.
  */
 
+/* Import Urbanist font from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Urbanist:wght@400;500;700&display=swap');
+
 /* You can override the default Infima variables here. */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
   --ifm-color-primary: #59479C;
   --ifm-color-primary-dark: #29784c;
@@ -17,20 +24,77 @@
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
 }
 
-/* For readability concerns, you should choose a lighter palette in dark mode. */
-[data-theme='dark'] {
-  --ifm-color-primary: #59479C;
-  --ifm-color-primary-dark: #21af90;
-  --ifm-color-primary-darker: #1fa588;
-  --ifm-color-primary-darkest: #1a8870;
-  --ifm-color-primary-light: #29d5b0;
-  --ifm-color-primary-lighter: #32d8b4;
-  --ifm-color-primary-lightest: #4fddbf;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+html, body, .navbar, .footer {
+  font-family: 'Urbanist', sans-serif;
+  background: #F1EFED;
 }
 
-html, .navbar, .footer{
-  background:#F1EFED;
+/* Override Infima's default font-family */
+:root {
+  --ifm-font-family-base: 'Urbanist', system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif;
+}
+
+/* Responsive typography */
+@media (max-width: 768px) {
+  html, body {
+    font-size: 14px;
+  }
+  
+  h1 {
+    font-size: 2rem;
+  }
+  
+  h2 {
+    font-size: 1.5rem;
+  }
+}
+
+@media (min-width: 769px) {
+  html, body {
+    font-size: 16px;
+  }
+  
+  h1 {
+    font-size: 2.5rem;
+  }
+  
+  h2 {
+    font-size: 2rem;
+  }
+}
+
+/* Tailwind Form Styles */
+.form-select {
+  @apply block w-full rounded-md border border-input bg-white px-3 py-2 text-sm shadow-sm focus:outline-none focus:ring-1 focus:ring-ring;
+}
+.help-form input, .help-form textarea {
+  background:#FFF !important;
+  box-shadow:none !important;
+
+  border: 1px solid #e2e2e2 !important ;
+}
+.button--primary {
+  @apply bg-primary text-white px-6 py-2 rounded-lg hover:opacity-90 transition-opacity;
+}
+
+.margin-bottom--sm {
+  @apply mb-4;
+}
+
+.margin-bottom--md {
+  @apply mb-6;
+}
+
+.margin-bottom--lg {
+  @apply mb-8;
+}
+
+.margin-vert--lg {
+  @apply my-8;
+}
+
+label {
+  @apply block text-sm font-medium mb-2;
 }
 
 .navbar__brand {

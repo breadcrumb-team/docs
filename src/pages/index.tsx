@@ -4,6 +4,7 @@ import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
 import HomepageFeatures from '@site/src/components/HomepageFeatures';
 import Heading from '@theme/Heading';
+import SearchBar from '@theme/SearchBar';
 
 import styles from './index.module.css';
 
@@ -18,12 +19,8 @@ function HomepageHeader() {
         <p className="hero__subtitle">
           Guides and tuturials to get you started with Breadcrumb.
         </p>
-        <div className={styles.buttons}>
-          <Link
-            className="button button--secondary button--lg"
-            to="/docs/intro">
-            Get Started
-          </Link>
+        <div className={styles.searchContainer}>
+          <SearchBar />
         </div>
       </div>
     </header>
@@ -34,8 +31,8 @@ export default function Home(): JSX.Element {
   const {siteConfig} = useDocusaurusContext();
   return (
     <Layout
-      title={`Hello from ${siteConfig.title}`}
-      description="Description will go into a meta tag in <head />">
+      title={`${siteConfig.title} Help Center`}
+      description="Breadcrumb Help Center">
       <HomepageHeader />
       <main>
         <HomepageFeatures />

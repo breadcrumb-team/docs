@@ -6,20 +6,22 @@ import type * as Preset from '@docusaurus/preset-classic';
 
 const config: Config = {
   title: 'Breadcrumb.ai',
-  tagline: 'Guides and tutorials',
+  tagline: 'Help Center',
   favicon: 'img/favicon.ico',
 
   // Set the production url of your site here
   url: 'https://docs.breadcrumb.ai',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: '/',
+  baseUrl: '/docs/',
+  trailingSlash: true,
 
   // GitHub pages deployment config.
+  // If you aren't using GitHub pages, you don't need these.
   organizationName: 'breadcrumb-team', // Usually your GitHub org/user name.
   projectName: 'docs', // Usually your repo name.
 
-  onBrokenLinks: 'throw',
+  onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
 
   // Even if you don't use internationalization, you can use this field to set
@@ -41,21 +43,7 @@ const config: Config = {
           editUrl:
             'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
         },
-        blog: {
-          showReadingTime: true,
-          feedOptions: {
-            type: ['rss', 'atom'],
-            xslt: true,
-          },
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
-          // Useful options to enforce blogging best practices
-          onInlineTags: 'warn',
-          onInlineAuthors: 'warn',
-          onUntruncatedBlogPosts: 'warn',
-        },
+        // blog feature removed
         theme: {
           customCss: './src/css/custom.css',
         },
@@ -65,23 +53,23 @@ const config: Config = {
 
   themeConfig: {
     // Replace with your project's social card
-    image: 'img/docusaurus-social-card.jpg',
+    image: 'img/breadcrumbframe.png',
+    colorMode: {
+      defaultMode: 'light',
+      disableSwitch: true,
+    },
     navbar: {
       logo: {
         alt: 'Breadcrumb',
         src: 'img/logo.svg',
       },
-      // items: [
-      //   {
-      //     type: 'docSidebar',
-      //     sidebarId: 'tutorialSidebar',
-      //     position: 'left',
-      //     label: 'Docs',
-      //   },
-        // {to: '/blog', label: 'Guides', position: 'left'},
-        // {to: '/community', label: 'Community', position: 'left'},
-        // {to: '/help', label: 'Still need help?', position: 'right'},
-      // ],
+      items: [
+        {
+          to: '/help',
+          label: 'Need Help?',
+          position: 'right',
+        },
+      ],
     },
     footer: {
       style: 'light',
@@ -90,8 +78,12 @@ const config: Config = {
           title: 'Docs',
           items: [
             {
-              label: 'Tutorial',
-              to: '/docs/intro',
+              label: 'Getting started',
+              to: '/docs/docs/intro',
+            },
+            {
+              label: 'Blog',
+              href: 'https://breadcrumb.ai/blog',
             },
           ],
         },
@@ -100,15 +92,15 @@ const config: Config = {
           items: [
             {
               label: 'Slack Community',
-              href: 'https://stackoverflow.com/questions/tagged/docusaurus',
+              href: 'https://join.slack.com/t/breadcrumbcommunity/shared_invite/zt-26maq86pe-sQqPQ7WTPn6mkJEwqBIvHw',
             },
             {
               label: 'LinkedIn',
-              href: 'https://discordapp.com/invite/docusaurus',
+              href: 'https://www.linkedin.com/company/breadcrumbai/',
             },
             {
               label: 'X',
-              href: 'https://x.com/docusaurus',
+              href: 'https://x.com/breadcrumbai',
             },
           ],
         },
@@ -116,8 +108,8 @@ const config: Config = {
           title: 'More',
           items: [
             {
-              label: 'Blog',
-              to: '/blog',
+              label: 'Need Help?',
+              to: '/help',
             },
           ],
         },
@@ -129,6 +121,14 @@ const config: Config = {
       darkTheme: prismThemes.dracula,
     },
   } satisfies Preset.ThemeConfig,
+  plugins: [
+    [
+      require.resolve('@easyops-cn/docusaurus-search-local'),
+      {
+        hashed: true,
+      },
+    ],
+  ],
 };
 
 export default config;

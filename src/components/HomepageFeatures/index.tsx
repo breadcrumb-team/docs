@@ -1,56 +1,59 @@
 import clsx from 'clsx';
 import Heading from '@theme/Heading';
+import Link from '@docusaurus/Link';
+import {useAllDocsData} from '@docusaurus/plugin-content-docs/client';
 import styles from './styles.module.css';
 
-type FeatureItem = {
+type CategoryItem = {
   title: string;
   Svg: React.ComponentType<React.ComponentProps<'svg'>>;
-  description: JSX.Element;
+  folder: string;
 };
 
-const FeatureList: FeatureItem[] = [
+const CategoryList: CategoryItem[] = [
   {
-    title: 'Easy to Use',
-    Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
-    description: (
-      <>
-        Docusaurus was designed from the ground up to be easily installed and
-        used to get your website up and running quickly.
-      </>
-    ),
-  },
-  {
-    title: 'Focus on What Matters',
+    title: 'Spaces',
     Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
-    description: (
-      <>
-        Docusaurus lets you focus on your docs, and we&apos;ll do the chores. Go
-        ahead and move your docs into the <code>docs</code> directory.
-      </>
-    ),
+    folder: 'Spaces',
   },
   {
-    title: 'Powered by React',
+    title: 'Share',
+    Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
+    folder: 'Share',
+  },
+  {
+    title: 'Data',
     Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
-    description: (
-      <>
-        Extend or customize your website layout by reusing React. Docusaurus can
-        be extended while reusing the same header and footer.
-      </>
-    ),
+    folder: 'Data',
   },
 ];
 
-function Feature({title, Svg, description}: FeatureItem) {
+function Category({title, Svg, folder}: CategoryItem) {
+  const allDocsData = useAllDocsData();
+  const defaultDocsData = allDocsData['default'];
+  const docs = Object.values(defaultDocsData.versions[0].docs);
+  const categoryDocs = docs.filter(doc => {
+    const docPath = doc.id.toLowerCase();
+    return docPath.startsWith(folder.toLowerCase()) && !docPath.endsWith('/intro');
+  });
+  const articleCount = categoryDocs.length;
+  const introPath = `${folder.toLowerCase()}/intro`;
+  const introDoc = docs.find(doc => doc.id.toLowerCase() === introPath);
+  const categoryLink = introDoc ? introDoc.path : `/docs/${introPath}.html`;
+
   return (
     <div className={clsx('col col--4')}>
-      <div className="text--center">
-        <Svg className={styles.featureSvg} role="img" />
-      </div>
-      <div className="text--center padding-horiz--md">
-        <Heading as="h3">{title}</Heading>
-        <p>{description}</p>
-      </div>
+      <Link to={categoryLink} className={styles.categoryLink}>
+        <div className={styles.categoryCard}>
+          <div className="text--center">
+            <Svg className={styles.categorySvg} role="img" />
+          </div>
+          <div className="text--center">
+            <Heading as="h3">{title}</Heading>
+            <p>{articleCount} articles</p>
+          </div>
+        </div>
+      </Link>
     </div>
   );
 }
@@ -60,8 +63,8 @@ export default function HomepageFeatures(): JSX.Element {
     <section className={styles.features}>
       <div className="container">
         <div className="row">
-          {FeatureList.map((props, idx) => (
-            <Feature key={idx} {...props} />
+          {CategoryList.map((props, idx) => (
+            <Category key={idx} {...props} />
           ))}
         </div>
       </div>
