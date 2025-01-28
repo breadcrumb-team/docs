@@ -1,0 +1,27 @@
+{
+  "id": "Data/intro",
+  "title": "Data work with Breadcrumb",
+  "description": "Breadcrumb is your AI-powered companion for simplifying the analysis of operational, inventory, and order data. By centralizing data, ensuring quality, and delivering actionable insights, Breadcrumb transforms how you approach operational strategies.",
+  "source": "@site/docs/Data/intro.md",
+  "sourceDirName": "Data",
+  "slug": "/Data/intro",
+  "permalink": "/docs/Data/intro",
+  "draft": false,
+  "unlisted": false,
+  "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/Data/intro.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 1,
+  "frontMatter": {
+    "sidebar_position": 1
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Groups",
+    "permalink": "/docs/Spaces/groups"
+  },
+  "next": {
+    "title": "Managing and Connecting Sources",
+    "permalink": "/docs/Data/connectingsources"
+  }
+}
