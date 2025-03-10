@@ -4,12 +4,32 @@ sidebar_position: 5
 
 # Embedding Content
 
-Embed Widgets on Your Website - This feature allows you to share real-time, interactive data visualizations on your website with your audience without any hassle. Simply generate the widget link and embed it into your site's HTML. It's that easy!
+Breadcrumb allows you to embed real-time, interactive data visualizations on your website with ease. This guide will walk you through the process of embedding Breadcrumb analytics into your application.
 
 ## Features
 
-- Real-time interactive visualizations
-- Simple widget link generation
-- Easy HTML integration
-- Live data updates
-- Hassle-free embedding process
+- **Real-time interactive visualizations**
+- **Simple widget integration**
+- **Easy HTML embedding**
+- **Live data updates**
+- **Hassle-free embedding process**
+
+## Prerequisites
+
+Before embedding Breadcrumb analytics, you'll need to:
+
+1. **Set up Sources**: Connect your database using the [Sources API](https://api.breadcrumb.ai/v1/redoc#tag/sources).
+2. **Create a Space**: Set up a space for your data using the [Spaces API](https://api.breadcrumb.ai/v1/redoc#tag/spaces).
+3. **Generate an Embed Token**: Get an authentication token using the [Embed API](https://api.breadcrumb.ai/v1/redoc#tag/embed).
+
+## Embedding the Widget
+
+Once you have your space created and embed token generated, you can embed the widget using an iframe:
+
+```html
+<iframe
+  src="https://app.breadcrumb.ai/embed/spaces/your-space-id?embed_token=your-embed-token">
+</iframe>
+```
+
+For detailed API documentation and examples, visit our [API Reference](https://api.breadcrumb.ai/v1/redoc#tag/embed).
