@@ -10,7 +10,7 @@ The **Space Canvas** is a revolutionary approach to data visualization and colla
 
 ## Why Space Canvas?
 
-Traditional dashboards are often either overly complex or limited in functionality, making it challenging to derive actionable insights efficiently. With the **Space Canvas**, Breadcrumb introduces a more fluid and intuitive experience for interacting with your data.  
+Traditional dashboards are often either overly complex or limited in functionality, making it challenging to derive actionable insights efficiently. With the **Space Canvas**, Breadcrumb introduces a more fluid and intuitive experience for interacting with your data.
 
 By combining spatial design with advanced AI capabilities, the Space Canvas allows users to explore, analyze, and collaborate on data like never before.
 
@@ -19,7 +19,9 @@ By combining spatial design with advanced AI capabilities, the Space Canvas allo
 ## Key Features of the Space Canvas
 
 ### 1. **Dynamic and Interactive Environment**
+
 The Space Canvas replaces static dashboards with a flexible workspace, enabling users to:
+
 - Drag and drop widgets and visualizations freely across the canvas.
 - Arrange data in a way that makes sense for their specific workflows.
 - Interact with elements in real-time to uncover deeper insights.
@@ -29,7 +31,9 @@ This dynamic layout promotes creativity and ensures that your data tells the sto
 ---
 
 ### 2. **Colocated/Embedded AI Agents**
+
 At the core of the Space Canvas are **colocated AI agents**—intelligent systems embedded directly within the workspace. These agents do more than execute tasks; they actively engage with your interactions, providing:
+
 - Context-aware insights based on your actions.
 - Real-time assistance for querying and analyzing data.
 - Seamless integration into your workflows, enhancing decision-making and collaboration.
@@ -39,12 +43,14 @@ Imagine AI agents that adapt to your needs, working alongside you within the sam
 ---
 
 ### 3. **Spatial Dashboard**
+
 The **Spatial Dashboard** redefines how you interact with data by combining spatial querying with AI intelligence. Here’s how it works:
+
 - Elements within the canvas can interact with one another, pulling information from other data points based on their location or context in the shared space.
 - This enables a **birds-eye view** of your data, allowing you to:
-  - Explore trends and relationships between data sets.
-  - Perform context-aware analyses directly within the canvas.
-  - Uncover insights through a more intuitive, spatial interface.
+    - Explore trends and relationships between data sets.
+    - Perform context-aware analyses directly within the canvas.
+    - Uncover insights through a more intuitive, spatial interface.
 
 ---
 

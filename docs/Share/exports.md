@@ -8,7 +8,7 @@ Breadcrumb provides the ability to download widgets and datasets in various form
 
 ## Supported Formats
 
-- **Images**: PNG, JPEG, SVG  
-- **Data**: CSV  
+- **Images**: PNG, JPEG, SVG
+- **Data**: CSV
 
 This functionality ensures flexibility in data handling, supports offline access, and preserves dataset integrity for further analysis or reporting.

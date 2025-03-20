@@ -27,8 +27,7 @@ Before embedding Breadcrumb analytics, you'll need to:
 Once you have your space created and embed token generated, you can embed the widget using an iframe:
 
 ```html
-<iframe
-  src="https://app.breadcrumb.ai/embed/spaces/your-space-id?embed_token=your-embed-token">
+<iframe src="https://app.breadcrumb.ai/embed/spaces/your-space-id?embed_token=your-embed-token">
 </iframe>
 ```
 

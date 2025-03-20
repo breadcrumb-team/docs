@@ -2,7 +2,7 @@
     "label": "Share",
     "position": 4,
     "link": {
-      "type": "generated-index",
-      "description": "Learn how to share your spaces with collaborators."
+        "type": "generated-index",
+        "description": "Learn how to share your spaces with collaborators."
     }
-  }
+}
