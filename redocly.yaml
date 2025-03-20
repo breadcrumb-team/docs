@@ -5,5 +5,5 @@ theme:
     # See https://redocly.com/docs/api-reference-docs/configuration/theming/
     theme:
       colors:
-        primary:
+        secondary:
           main: '#F1EFED'

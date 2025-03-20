@@ -58,11 +58,6 @@ const config: Config = {
                         route: '/api/',
                     },
                 ],
-                // Theme Options for modifying how redoc renders them
-                theme: {
-                    // Change with your site colors
-                    primaryColor: '#F1EFED',
-                },
             },
         ] satisfies Redocusaurus.PresetEntry,
     ],
