@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkbreadcrumb_doc=self.webpackChunkbreadcrumb_doc||[]).push([[580],{38828:e=>{e.exports=JSON.parse('{"name":"docusaurus-plugin-redoc","id":"breadcrumb-api"}')}}]);
