@@ -25,13 +25,13 @@
 }
 
 html, body, .navbar, .footer {
-  font-family: 'Urbanist', sans-serif;
+  font-family: 'Poppins', sans-serif;
   background: #F1EFED;
 }
 
 /* Override Infima's default font-family */
 :root {
-  --ifm-font-family-base: 'Urbanist', system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif;
+  --ifm-font-family-base: 'Poppins', system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif;
 }
 
 /* Responsive typography */
@@ -39,11 +39,11 @@ html, body, .navbar, .footer {
   html, body {
     font-size: 14px;
   }
-  
+
   h1 {
     font-size: 2rem;
   }
-  
+
   h2 {
     font-size: 1.5rem;
   }
@@ -53,11 +53,11 @@ html, body, .navbar, .footer {
   html, body {
     font-size: 16px;
   }
-  
+
   h1 {
     font-size: 2.5rem;
   }
-  
+
   h2 {
     font-size: 2rem;
   }
