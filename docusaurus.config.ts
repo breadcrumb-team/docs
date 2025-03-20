@@ -1,7 +1,7 @@
 import { themes as prismThemes } from 'prism-react-renderer';
 import type { Config } from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
-
+import type * as Redocusaurus from 'redocusaurus';
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
 const config: Config = {
@@ -46,6 +46,25 @@ const config: Config = {
                 },
             } satisfies Preset.Options,
         ],
+        // Redocusaurus config
+        [
+            'redocusaurus',
+            {
+                // Plugin Options for loading OpenAPI files
+                specs: [
+                    {
+                        id: 'breadcrumb-api',
+                        spec: 'openapi/breadcrumb.yaml',
+                        route: '/api/',
+                    },
+                ],
+                // Theme Options for modifying how redoc renders them
+                theme: {
+                    // Change with your site colors
+                    primaryColor: '#F1EFED',
+                },
+            },
+        ] satisfies Redocusaurus.PresetEntry,
     ],
 
     themeConfig: {

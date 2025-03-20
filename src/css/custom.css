@@ -26,7 +26,6 @@
 
 html, body, .navbar, .footer {
   font-family: 'Poppins', sans-serif;
-  background: #F1EFED;
 }
 
 /* Override Infima's default font-family */

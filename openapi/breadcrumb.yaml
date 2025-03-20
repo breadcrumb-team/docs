@@ -1,0 +1,337 @@
+---
+openapi: 3.1.0
+info:
+  title: Breadcrumb API
+  description: This is the API for Breadcrumb
+  version: 0.1.0
+servers:
+- url: "/v1"
+paths:
+  "/conversations/{conversation_id}/chat":
+    post:
+      tags:
+      - conversations
+      summary: Send Message
+      operationId: send_message_conversations__conversation_id__chat_post
+      security:
+      - APIKeyHeader: []
+      parameters:
+      - name: conversation_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Conversation Id
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/MessageRequest"
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/MessageResponse"
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/HTTPValidationError"
+  "/conversations/{conversation_id}/messages":
+    get:
+      tags:
+      - conversations
+      summary: Get Messages
+      operationId: get_messages_conversations__conversation_id__messages_get
+      security:
+      - APIKeyHeader: []
+      parameters:
+      - name: conversation_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Conversation Id
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 100
+          title: Limit
+      - name: next_token
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Next Token
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/MessagesResponse"
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/HTTPValidationError"
+  "/conversations/{conversation_id}":
+    get:
+      tags:
+      - conversations
+      summary: Get Conversation
+      operationId: get_conversation_conversations__conversation_id__get
+      security:
+      - APIKeyHeader: []
+      parameters:
+      - name: conversation_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Conversation Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/ConversationResponse"
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/HTTPValidationError"
+    delete:
+      tags:
+      - conversations
+      summary: Delete Conversation
+      operationId: delete_conversation_conversations__conversation_id__delete
+      security:
+      - APIKeyHeader: []
+      parameters:
+      - name: conversation_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Conversation Id
+      responses:
+        '204':
+          description: Successful Response
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/HTTPValidationError"
+  "/embed/token":
+    post:
+      tags:
+      - embed
+      summary: Generate embed token
+      description: |-
+        Generates a JWT token for embedded authentication.
+
+            The token can be used to authenticate users in embedded contexts, such as
+            iframe integrations. If a user with the provided email doesn't exist,
+            a new user account will be created.
+      operationId: generate_embed_token_embed_token_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/EmbedTokenRequest"
+        required: true
+      responses:
+        '200':
+          description: Successfully generated embed token
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/EmbedTokenResponse"
+              example:
+                token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+        '400':
+          description: Invalid request parameters
+        '403':
+          description: Invalid API key
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/HTTPValidationError"
+      security:
+      - APIKeyHeader: []
+components:
+  schemas:
+    ConversationResponse:
+      properties:
+        conversation_id:
+          type: string
+          title: Conversation Id
+        data_sources:
+          items:
+            "$ref": "#/components/schemas/DataSourceResponse"
+          type: array
+          title: Data Sources
+      type: object
+      required:
+      - conversation_id
+      - data_sources
+      title: ConversationResponse
+    ConversationRole:
+      type: string
+      enum:
+      - user
+      - breadcrumb
+      title: ConversationRole
+    DataSourceResponse:
+      properties:
+        name:
+          type: string
+          title: Name
+        type:
+          type: string
+          title: Type
+      type: object
+      required:
+      - name
+      - type
+      title: DataSourceResponse
+    EmbedTokenRequest:
+      properties:
+        customer_id:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Customer Id
+          description: Existing customer ID to associate with the user
+        email:
+          type: string
+          title: Email
+          description: Email address of the user to generate token for
+          example: user@example.com
+        name:
+          type: string
+          title: Name
+          description: Full name of the user
+          example: John Doe
+      type: object
+      required:
+      - email
+      - name
+      title: EmbedTokenRequest
+    EmbedTokenResponse:
+      properties:
+        token:
+          type: string
+          title: Token
+          description: JWT token for embedded authentication
+      type: object
+      required:
+      - token
+      title: EmbedTokenResponse
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            "$ref": "#/components/schemas/ValidationError"
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    MessageRequest:
+      properties:
+        text:
+          type: string
+          title: Text
+      type: object
+      required:
+      - text
+      title: MessageRequest
+    MessageResponse:
+      properties:
+        text:
+          type: string
+          title: Text
+        role:
+          "$ref": "#/components/schemas/ConversationRole"
+        visualization:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Visualization
+      type: object
+      required:
+      - text
+      - role
+      title: MessageResponse
+    MessagesResponse:
+      properties:
+        messages:
+          items:
+            "$ref": "#/components/schemas/MessageResponse"
+          type: array
+          title: Messages
+        next_token:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Next Token
+      type: object
+      required:
+      - messages
+      - next_token
+      title: MessagesResponse
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+  securitySchemes:
+    APIKeyHeader:
+      type: apiKey
+      in: header
+      name: X-API-Key
+tags:
+- name: sources
+  description: Manage data sources like database connectors, spreadsheets, and smart
+    connectors
+- name: spaces
+  description: Manage spaces, which are filtered views of data sources shared with
+    customers
+- name: embed
+  description: Endpoints for embedded authentication and user management
+- name: conversations
+  description: AI-powered chat interface for data analysis. Enables natural language
+    interactions with your data sources, generates visualizations, and provides analytical
+    insights. Each conversation maintains context and can perform multi-step analysis
+    tasks.

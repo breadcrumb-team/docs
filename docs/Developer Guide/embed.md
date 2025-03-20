@@ -18,9 +18,9 @@ Breadcrumb allows you to embed real-time, interactive data visualizations on you
 
 Before embedding Breadcrumb analytics, you'll need to:
 
-1. **Set up Sources**: Connect your database using the [Sources API](https://api.breadcrumb.ai/v1/redoc#tag/sources).
-2. **Create a Space**: Set up a space for your data using the [Spaces API](https://api.breadcrumb.ai/v1/redoc#tag/spaces).
-3. **Generate an Embed Token**: Get an authentication token using the [Embed API](https://api.breadcrumb.ai/v1/redoc#tag/embed).
+1. **Set up Sources**: Connect your database using the [Sources API](/Developer%20Guide/api_ref/#tag/sources).
+2. **Create a Space**: Set up a space for your data using the [Spaces API](/Developer%20Guide/api_ref/#tag/spaces).
+3. **Generate an Embed Token**: Get an authentication token using the [Embed API](/Developer%20Guide/api_ref/#tag/embed).
 
 ## Embedding the Widget
 
