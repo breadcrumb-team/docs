@@ -21,6 +21,8 @@ Breadcrumb allows you to embed real-time, interactive data visualizations on you
 
 ### Create a space via the Breadcrumb UI
 
+See [Spaces](/Spaces).
+
 ### Create a space via the Breadcrumb API
 
 1. **Set up a data source**: Connect your data source using the [Sources API](/Developer%20Guide/api_ref/#tag/sources).
