@@ -74,10 +74,10 @@ const config: Config = {
             {name: 'description', content: 'Breadcrumb.ai documentation and help center. Learn how to use Breadcrumb AI-powered analytics and data visualization.'},
             {name: 'og:type', content: 'website'},
             {name: 'og:title', content: 'Breadcrumb.ai Documentation'},
-            {name: 'og:description', content: 'Breadcrumb.ai documentation and help center. Learn how to use Breadcrumb for real-time, interactive data visualizations and analytics.'},
+            {name: 'og:description', content: 'Breadcrumb.ai documentation and help center. Learn how to use Breadcrumb AI-powered analytics and data visualization.'},
             {name: 'twitter:card', content: 'summary_large_image'},
             {name: 'twitter:title', content: 'Breadcrumb.ai Documentation'},
-            {name: 'twitter:description', content: 'Breadcrumb.ai documentation and help center. Learn how to use Breadcrumb for real-time, interactive data visualizations and analytics.'},
+            {name: 'twitter:description', content: 'Breadcrumb.ai documentation and help center. Learn how to use Breadcrumb AI-powered analytics and data visualization.'},
         ],
         navbar: {
             logo: {
