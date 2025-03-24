@@ -69,6 +69,16 @@ const config: Config = {
             defaultMode: 'light',
             disableSwitch: true,
         },
+        metadata: [
+            {name: 'keywords', content: 'breadcrumb, analytics, data visualization, business intelligence, embedded analytics'},
+            {name: 'description', content: 'Breadcrumb.ai documentation and help center. Learn how to use Breadcrumb AI-powered analytics and data visualization.'},
+            {name: 'og:type', content: 'website'},
+            {name: 'og:title', content: 'Breadcrumb.ai Documentation'},
+            {name: 'og:description', content: 'Breadcrumb.ai documentation and help center. Learn how to use Breadcrumb for real-time, interactive data visualizations and analytics.'},
+            {name: 'twitter:card', content: 'summary_large_image'},
+            {name: 'twitter:title', content: 'Breadcrumb.ai Documentation'},
+            {name: 'twitter:description', content: 'Breadcrumb.ai documentation and help center. Learn how to use Breadcrumb for real-time, interactive data visualizations and analytics.'},
+        ],
         navbar: {
             logo: {
                 alt: 'Breadcrumb',
