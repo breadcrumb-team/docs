@@ -55,7 +55,7 @@ Once you have obtained the embed token, add it to your iframe code:
 
 ```html
 <iframe
-  src="https://app.breadcrumb.ai/embed/spaces/<your-space-id>?embed_token=<your-embed-token>"
+  src="https://app.breadcrumb.ai/embed/spaces/<your-space-id>?embedToken=<your-embed-token>"
   width="100%"
   height="600px"
   frameborder="0"

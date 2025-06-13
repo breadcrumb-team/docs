@@ -35,6 +35,8 @@ We use [Redocusaurus](https://redocusaurus.vercel.app/) to render API docs autom
 
 ### Deployment
 
+Pushing to `main` will automatically deploy to GitHub Pages. To deploy manually, run:
+
 Using SSH:
 
 ```

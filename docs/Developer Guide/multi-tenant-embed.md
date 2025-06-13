@@ -43,7 +43,7 @@ Embed the user's space in your application by adding the iframe code to your app
 
 ```html
 <iframe
-  src="https://app.breadcrumb.ai/embed/spaces/<user-space-id>?embed_token=<embed-token>"
+  src="https://app.breadcrumb.ai/embed/spaces/<user-space-id>?embedToken=<embed-token>"
   width="100%"
   height="600px"
   frameborder="0"
