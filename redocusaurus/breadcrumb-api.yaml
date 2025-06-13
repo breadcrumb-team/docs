@@ -479,7 +479,7 @@ components:
             - type: string
             - type: 'null'
           title: Space Id
-          description: ID of the embedded space to associate with the user
+          description: ID of the embedded space the user is given access to
       type: object
       required:
         - email
