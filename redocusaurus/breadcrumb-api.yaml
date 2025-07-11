@@ -4,7 +4,8 @@ info:
   description: This is the API for Breadcrumb
   version: 0.1.0
 servers:
-  - url: /v1
+  - url: https://api.breadcrumb.ai/v1
+    description: Breadcrumb API server
 paths:
   /conversations/{conversation_id}/chat:
     post:
@@ -369,34 +370,40 @@ components:
           type: string
           title: Host
           description: Database host
-          example: db.example.com
+          examples:
+            - db.example.com
         port:
           type: integer
           title: Port
           description: Database port
-          example: 5432
+          examples:
+            - 5432
         database:
           type: string
           title: Database
           description: Database name
-          example: analytics
+          examples:
+            - analytics
         username:
           type: string
           title: Username
           description: Database username
-          example: analyst
+          examples:
+            - analyst
         password:
           type: string
           title: Password
           description: Database password
-          example: secret123
+          examples:
+            - secret123
         source_name:
           anyOf:
             - type: string
             - type: 'null'
           title: Source Name
           description: Optional name for the source
-          example: Production Analytics DB
+          examples:
+            - Production Analytics DB
       type: object
       required:
         - database_type
