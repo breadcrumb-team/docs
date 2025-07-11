@@ -62,6 +62,44 @@ Once you have obtained the embed token, add it to your iframe code:
 ></iframe>
 ```
 
+### Embed a group
+
+By default, space embedding will embed the first group in the space. You can also embed a different group by specifying the group ID in the embed URL.
+
+1. **Get the group embed URL**
+
+Navigate to the group you want to embed in the Breadcrumb space. Click the "Present" button in the top right corner of the group.
+
+![Group share settings](img/group_present.png)
+
+Click the "Embed" button to open the group embed settings. The iframe code containing the embed URL is shown.
+
+![Group embed settings](img/embed_iframe_code.png)
+
+2. **Embed the group**
+
+Use the group embed URL in your iframe code:
+
+```html
+<iframe
+  src="https://app.breadcrumb.ai/embed/spaces/<your-space-id>/groups/<your-group-id>"
+  width="100%"
+  height="600px"
+  frameborder="0"
+></iframe>
+```
+
+For private groups, you'll need to include an embed token:
+
+```html
+<iframe
+  src="https://app.breadcrumb.ai/embed/spaces/<your-space-id>/groups/<your-group-id>?embedToken=<your-embed-token>"
+  width="100%"
+  height="600px"
+  frameborder="0"
+></iframe>
+```
+
 ## Security Best Practices
 
 - Embed tokens are short-lived. You should always call the `/embed/token` API to obtain a fresh token every time the embeded space is rendered.
