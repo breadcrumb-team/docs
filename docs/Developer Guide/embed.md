@@ -70,11 +70,11 @@ By default, space embedding will embed the first group in the space. You can als
 
 Navigate to the group you want to embed in the Breadcrumb space. Click the "Present" button in the top right corner of the group.
 
-![Group share settings](img/group_present.png)
+![Group share settings](/img/group_present.png)
 
 Click the "Embed" button to open the group embed settings. The iframe code containing the embed URL is shown.
 
-![Group embed settings](img/embed_iframe_code.png)
+![Group embed settings](/img/embed_iframe_code.png)
 
 2. **Embed the group**
 
