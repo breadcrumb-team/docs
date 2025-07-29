@@ -4,7 +4,7 @@ info:
   description: This is the API for Breadcrumb
   version: 0.1.0
 servers:
-  - url: https://api.breadcrumb.ai/v1
+  - url: https://api.breadcrumb.ai
     description: Breadcrumb API server
 paths:
   /conversations/{conversation_id}/chat:
@@ -34,19 +34,21 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/MessageResponse'
+                $ref: '#/components/schemas/ExecutionResponse'
         '422':
           description: Validation Error
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/HTTPValidationError'
-  /conversations/{conversation_id}/messages:
+  /conversations/{conversation_id}/executions:
     get:
       tags:
         - conversations
-      summary: Get Messages
-      operationId: get_messages_conversations__conversation_id__messages_get
+      summary: List Conversation Executions
+      description: List all executions for a conversation.
+      operationId: >-
+        list_conversation_executions_conversations__conversation_id__executions_get
       security:
         - APIKeyHeader: []
       parameters:
@@ -56,28 +58,84 @@ paths:
           schema:
             type: string
             title: Conversation Id
-        - name: limit
-          in: query
-          required: false
-          schema:
-            type: integer
-            default: 100
-            title: Limit
-        - name: next_token
-          in: query
-          required: false
-          schema:
-            anyOf:
-              - type: string
-              - type: 'null'
-            title: Next Token
       responses:
         '200':
           description: Successful Response
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/MessagesResponse'
+                type: array
+                items:
+                  $ref: '#/components/schemas/ExecutionResponse'
+                title: >-
+                  Response List Conversation Executions Conversations 
+                  Conversation Id  Executions Get
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /conversations/{conversation_id}/executions/{execution_id}:
+    get:
+      tags:
+        - conversations
+      summary: Get Conversation Execution
+      description: Get a specific execution for a conversation.
+      operationId: >-
+        get_conversation_execution_conversations__conversation_id__executions__execution_id__get
+      security:
+        - APIKeyHeader: []
+      parameters:
+        - name: conversation_id
+          in: path
+          required: true
+          schema:
+            type: string
+            title: Conversation Id
+        - name: execution_id
+          in: path
+          required: true
+          schema:
+            type: string
+            title: Execution Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExecutionResponse'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /conversations/{conversation_id}/latest_execution:
+    get:
+      tags:
+        - conversations
+      summary: Get Latest Conversation Execution
+      description: Get the latest execution for a conversation.
+      operationId: >-
+        get_latest_conversation_execution_conversations__conversation_id__latest_execution_get
+      security:
+        - APIKeyHeader: []
+      parameters:
+        - name: conversation_id
+          in: path
+          required: true
+          schema:
+            type: string
+            title: Conversation Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExecutionResponse'
         '422':
           description: Validation Error
           content:
@@ -321,42 +379,67 @@ paths:
           description: Invalid API key
       security:
         - APIKeyHeader: []
+  /spaces/{space_id}/conversations:
+    post:
+      tags:
+        - spaces
+      summary: Create a new conversation in a space
+      description: |-
+        Creates a new conversation (task) within a specific space.
+
+            A conversation allows users to interact with the data in the space through natural language.
+            The conversation will be associated with the space and can access the space's data sources.
+      operationId: create_conversation_in_space_spaces__space_id__conversations_post
+      security:
+        - APIKeyHeader: []
+      parameters:
+        - name: space_id
+          in: path
+          required: true
+          schema:
+            type: string
+            title: Space Id
+      responses:
+        '200':
+          description: Conversation created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConversationResponse'
+        '403':
+          description: Invalid API key
+        '404':
+          description: Space not found
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
     ConversationResponse:
       properties:
-        conversation_id:
+        id:
           type: string
-          title: Conversation Id
-        data_sources:
-          items:
-            $ref: '#/components/schemas/DataSourceResponse'
-          type: array
-          title: Data Sources
+          title: Id
+        space_id:
+          anyOf:
+            - type: string
+            - type: 'null'
+          title: Space Id
+        created_at:
+          type: string
+          title: Created At
+        updated_at:
+          type: string
+          title: Updated At
       type: object
       required:
-        - conversation_id
-        - data_sources
+        - id
+        - created_at
+        - updated_at
       title: ConversationResponse
-    ConversationRole:
-      type: string
-      enum:
-        - user
-        - breadcrumb
-      title: ConversationRole
-    DataSourceResponse:
-      properties:
-        name:
-          type: string
-          title: Name
-        type:
-          type: string
-          title: Type
-      type: object
-      required:
-        - name
-        - type
-      title: DataSourceResponse
     DatabaseConnectorCreate:
       properties:
         database_type:
@@ -502,6 +585,31 @@ components:
       required:
         - token
       title: EmbedTokenResponse
+    ExecutionResponse:
+      properties:
+        id:
+          type: string
+          title: Id
+        task_id:
+          type: string
+          title: Task Id
+        status:
+          $ref: '#/components/schemas/Status'
+        response:
+          type: string
+          title: Response
+        visualization:
+          anyOf:
+            - type: string
+            - type: 'null'
+          title: Visualization
+      type: object
+      required:
+        - id
+        - task_id
+        - status
+        - response
+      title: ExecutionResponse
     FilterCondition:
       properties:
         operator:
@@ -552,57 +660,26 @@ components:
       required:
         - text
       title: MessageRequest
-    MessageResponse:
-      properties:
-        text:
-          type: string
-          title: Text
-        role:
-          $ref: '#/components/schemas/ConversationRole'
-        visualization:
-          anyOf:
-            - type: string
-            - type: 'null'
-          title: Visualization
-      type: object
-      required:
-        - text
-        - role
-      title: MessageResponse
-    MessagesResponse:
-      properties:
-        messages:
-          items:
-            $ref: '#/components/schemas/MessageResponse'
-          type: array
-          title: Messages
-        next_token:
-          anyOf:
-            - type: string
-            - type: 'null'
-          title: Next Token
-      type: object
-      required:
-        - messages
-        - next_token
-      title: MessagesResponse
     SpaceCreate:
       properties:
         source_id:
           type: string
           title: Source Id
           description: ID of the data source to create space from
-          example: src_123
+          examples:
+            - src_123
         name:
           type: string
           title: Name
           description: Display name for the space
-          example: Active Users Dashboard
+          examples:
+            - Active Users Dashboard
         customer_id:
           type: string
           title: Customer Id
           description: ID of the customer to share this space with
-          example: cust_456
+          examples:
+            - cust_456
         filters:
           anyOf:
             - additionalProperties:
@@ -636,27 +713,32 @@ components:
           type: string
           title: Space Id
           description: Unique identifier for the space
-          example: space_789
+          examples:
+            - space_789
         source_id:
           type: string
           title: Source Id
           description: ID of the underlying data source
-          example: src_123
+          examples:
+            - src_123
         name:
           type: string
           title: Name
           description: Display name of the space
-          example: Active Users Dashboard
+          examples:
+            - Active Users Dashboard
         partner_id:
           type: string
           title: Partner Id
           description: ID of the partner who owns this space
-          example: partner_123
+          examples:
+            - partner_123
         customer_id:
           type: string
           title: Customer Id
           description: ID of the customer this space is shared with
-          example: cust_456
+          examples:
+            - cust_456
         filters:
           additionalProperties:
             $ref: '#/components/schemas/FilterCondition'
@@ -671,6 +753,14 @@ components:
         - partner_id
         - customer_id
       title: SpaceResponse
+    Status:
+      type: string
+      enum:
+        - PENDING
+        - RUNNING
+        - SUCCESS
+        - FAILURE
+      title: Status
     ValidationError:
       properties:
         loc:
