@@ -69,6 +69,10 @@ const config: Config = {
             defaultMode: 'light',
             disableSwitch: true,
         },
+        gtag: {
+            trackingID: 'G-Z66YRKJHB1',
+            anonymizeIP: true,
+        },
         metadata: [
             {name: 'keywords', content: 'breadcrumb, analytics, data visualization, business intelligence, embedded analytics'},
             {name: 'description', content: 'Breadcrumb.ai documentation and help center. Learn how to use Breadcrumb AI-powered analytics and data visualization.'},
@@ -149,6 +153,12 @@ const config: Config = {
                 hashed: true,
             },
         ],
+    ],
+    scripts: [
+        {
+            src: 'https://www.googletagmanager.com/gtag/js?id=G-Z66YRKJHB1',
+            async: true,
+        },
     ],
 };
 
