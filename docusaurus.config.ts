@@ -44,6 +44,10 @@ const config: Config = {
                 theme: {
                     customCss: './src/css/custom.css',
                 },
+                gtag: {
+                    trackingID: 'G-Z66YRKJHB1',
+                    anonymizeIP: true,
+                },
             } satisfies Preset.Options,
         ],
         // Redocusaurus config
@@ -68,10 +72,6 @@ const config: Config = {
         colorMode: {
             defaultMode: 'light',
             disableSwitch: true,
-        },
-        gtag: {
-            trackingID: 'G-Z66YRKJHB1',
-            anonymizeIP: true,
         },
         metadata: [
             {name: 'keywords', content: 'breadcrumb, analytics, data visualization, business intelligence, embedded analytics'},
