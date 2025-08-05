@@ -19,7 +19,7 @@ Multi-tenant embedding enables you to:
 ### 1. Create a Space Template
 
 First, create a space template using the Breadcrumb UI:
-1. Connect your multi-tenant data source and [create a space](/Spaces) that will serve as your template
+1. Connect your multi-tenant data source and [create a space](/Spaces/intro) that will serve as your template
 3. Design your visualizations and layouts
 4. Note down the template space ID for later use
 
