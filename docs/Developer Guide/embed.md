@@ -21,7 +21,7 @@ Breadcrumb allows you to embed real-time, interactive data visualizations on you
 
 ### Create a space via the Breadcrumb UI
 
-See [Spaces](/Spaces).
+See [Spaces](/Spaces/intro).
 
 ### Create a space via the Breadcrumb API
 
